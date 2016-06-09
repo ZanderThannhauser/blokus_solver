@@ -1224,21 +1224,23 @@ img.show()
 
 print "Please choose an algorithm to play against: \n A. Random \n B. Greedy \n C. Minimax \n"
 
-choice = raw_input().upper()
+#choice = raw_input().upper()
 
-while not (choice in ["A", "B", "C"]):
-    choice = raw_input("\n Please choose a valid algorithm: \n").upper()
+#while not (choice in ["A", "B", "C"]):
+#    choice = raw_input("\n Please choose a valid algorithm: \n").upper()
 
-if choice == "A":
-    computer = Player("A", "Computer", Random_Player)
-elif choice == "B":
-    computer = Greedy("A", "Computer", Greedy_Player, [2, 1, 5, 1, 1])
-else:
-    computer = Greedy("A", "Computer", Minimax_Player, [2, 1, 5, 1, 1])
+#if choice == "A":
+#    computer = Player("A", "Computer", Random_Player)
+#elif choice == "B":
+#    computer = Greedy("A", "Computer", Greedy_Player, [2, 1, 5, 1, 1])
+#else:
+#    computer = Greedy("A", "Computer", Minimax_Player, [2, 1, 5, 1, 1])
 
-user = Player("B", "User", User_Player)
+computer = Player("1", "First Computer", Random_Player)
 
-standard_size = Board(14, 14, "_")
+user =Player("2", "Second Computer", Random_Player) #Player("B", "User", User_Player)
+
+standard_size = Board(20, 20, " ")
 
 ordering = [computer, user]
 random.shuffle(ordering)
