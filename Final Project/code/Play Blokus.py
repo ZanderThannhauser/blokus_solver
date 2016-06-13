@@ -1307,6 +1307,7 @@ for p in by_name:
     print p.name + " : " + str(p.score)
 
 def writelayer(data, path, x, y, z, b):
+	print "data.shape == ", data.shape;
 	file = open(path, "w");
 	for i in range(0, x):
 		for j in range(0, y * z):
@@ -1317,16 +1318,13 @@ def writelayer(data, path, x, y, z, b):
 		        file.write(" ")
 		file.write("\n")
 	file.close();
-if(False):
+
+if(True):
 	writelayer(first_layer_1, "layers_1/first_layer", 400, 50, 1, False);
-	writelayer(hidden_layers_1, "layers_1/hidden_layers", 50, 50, 5, False);
+	writelayer(hidden_layers_1, "layers_1/hidden_layers", 250, 50, 1, False);
 	writelayer(final_layer_1, "layers_1/final_layer", 50, 1, 1, True);
+	
 	writelayer(first_layer_2, "layers_2/first_layer", 400, 50, 1, False);
-	writelayer(hidden_layers_2, "layers_2/hidden_layers", 50, 50, 5, False);
+	writelayer(hidden_layers_2, "layers_2/hidden_layers", 250, 50, 1, False);
 	writelayer(final_layer_2, "layers_2/final_layer", 50, 1, 1, True);
-
-
-
-
-
 
