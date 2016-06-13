@@ -62,6 +62,7 @@ from PIL import Image
 from matplotlib import rcParams
 rcParams['figure.figsize'] = (6, 6)
 rcParams['figure.dpi'] = 150
+import activiation as act
 
 # <headingcell level=4>
 
@@ -444,7 +445,8 @@ def fancyBoard(board, num):
 # Here we implement the Board class. Boards take in
 # Players and update according to placements made.
 # They also have a print functionality.
-
+#def activiate(input_layer):
+	
 class Board:
     """
     Creates a board that has n rows and
@@ -475,6 +477,19 @@ class Board:
         """
         return (0 <= point[0] <= (self.size[1] - 1)) & (0 <= point[1] <= (self.size[0] - 1))
     
+    def get1D_Array(self):
+	returned = np.ones((self.size[0] * self.size[1]));
+	for x in range(0, self.size[0]):
+		for y in range(0, self.size[1]):
+			if(self.state[x][y] == "N"):
+				returned[x*y] = (1);
+			elif(self.state[x][y] == "R"):
+				returned[x*y] = (0.5);
+			else:
+				returned[x*y] = (0);
+	return returned;
+	
+	
     def overlap(self, move):
         """
         Returns a boolean for whether a move is overlapping
@@ -857,11 +872,22 @@ def Random_Player(player, game):
     # there must be no possible moves left, return None
     return None
 
+# load weights before use
+first_layer_1 = np.genfromtxt("layers_1/first_layer", delimiter=" ")
+hidden_layers_1 =  np.genfromtxt("layers_1/hidden_layers", delimiter=" ");
+final_layer_1 =  np.genfromtxt("layers_1/final_layer", delimiter=" ")
 
+first_layer_2 = np.genfromtxt("layers_2/first_layer", delimiter=" ")
+hidden_layers_2 =  np.genfromtxt("layers_2/hidden_layers", delimiter=" ");
+final_layer_2 =  np.genfromtxt("layers_2/final_layer", delimiter=" ")
 
 
 def NeuralNet_Player(player, game):
     shape_options = [p for p in player.pieces]
+    feature = game.board.get1D_Array();
+	#activation(input, first_layer, hidden_layers, final_layer):
+    score = act.activation(feature, first_layer_1, hidden_layers_1, final_layer_1);
+    print "score == ", score
     #Alex and Kevin
     while len(shape_options) > 0:
         piece = random.choice(shape_options)
@@ -1241,22 +1267,6 @@ def User_Player(player, game):
 
 print "\n \n Welcome to Blokus! \n \n \n Blokus is a geometrically abstract, strategy board game. It can be a two- or four-player game. Each player has 21 pieces of a different color. The two-player version of the board has 14 rows and 14 columns. \n \n You will be playing a two-player version against an algorithm of your choice: Random, Greedy, or Minimax. In case you need to review the rules of Blokus, please follow this link: http://en.wikipedia.org/wiki/Blokus. \n \n This is how choosing a move is going to work: after every turn, we will display the current state of the board, as well as the scores of each player and the pieces available to you. We have provided you with a map of the names of the pieces, as well as their reference points, denoted by red dots. When you would like to place a piece, we will prompt you for the name of the piece and the coordinate (column, row) of the reference point. If multiple placements are possible, we will let you choose which one you would like to play. \n \n Good luck! \n \n"
 
-#img = Image.open('Images/Blokus_Tiles.png')
-#img.show()
-
-print "Please choose an algorithm to play against: \n A. Random \n B. Greedy \n C. Minimax \n"
-
-#choice = raw_input().upper()
-
-#while not (choice in ["A", "B", "C"]):
-#    choice = raw_input("\n Please choose a valid algorithm: \n").upper()
-
-#if choice == "A":
-#    computer = Player("A", "Computer", Random_Player)
-#elif choice == "B":
-#    computer = Greedy("A", "Computer", Greedy_Player, [2, 1, 5, 1, 1])
-#else:
-#    computer = Greedy("A", "Computer", Minimax_Player, [2, 1, 5, 1, 1])
 
 computer = Player("R", "Random_Player", Random_Player)
 
@@ -1269,7 +1279,6 @@ random.shuffle(ordering)
 userblokus = Blokus(ordering, standard_size, All_Shapes)
 
 # <codecell>
-
 userblokus.board.print_board(num = userblokus.rounds, fancy = False)
 print "\n"
 userblokus.play()
@@ -1281,8 +1290,8 @@ while userblokus.winner() == "None":
     userblokus.board.print_board(num = userblokus.rounds, fancy = False)
     print "\n"
     for p in userblokus.players:
-        print p.name + " (" + str(p.score) + ") : " + str([s.ID for s in p.pieces])
-        print 
+	print p.name + " (" + str(p.score) + ") : " + str([s.ID for s in p.pieces])
+	print 
     print "======================================================================="
 
 print 
@@ -1296,6 +1305,25 @@ by_name = sorted(userblokus.players, key = lambda player: player.name)
 
 for p in by_name:
     print p.name + " : " + str(p.score)
+
+def writelayer(data, path, x, y, z, b):
+	file = open(path, "w");
+	for i in range(0, x):
+		for j in range(0, y * z):
+			if(b):
+		       		file.write(str(data[i]));
+			else:
+		       		file.write(str(data[i][j]));
+		        file.write(" ")
+		file.write("\n")
+	file.close();
+if(False):
+	writelayer(first_layer_1, "layers_1/first_layer", 400, 50, 1, False);
+	writelayer(hidden_layers_1, "layers_1/hidden_layers", 50, 50, 5, False);
+	writelayer(final_layer_1, "layers_1/final_layer", 50, 1, 1, True);
+	writelayer(first_layer_2, "layers_2/first_layer", 400, 50, 1, False);
+	writelayer(hidden_layers_2, "layers_2/hidden_layers", 50, 50, 5, False);
+	writelayer(final_layer_2, "layers_2/final_layer", 50, 1, 1, True);
 
 
 
