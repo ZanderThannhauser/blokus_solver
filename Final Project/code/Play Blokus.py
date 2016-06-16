@@ -478,16 +478,15 @@ class Board:
         return (0 <= point[0] <= (self.size[1] - 1)) & (0 <= point[1] <= (self.size[0] - 1))
     
     def get1D_Array(self):
-	    returned = np.ones((self.size[0] * self.size[1]));
-	    for x in range(0, self.size[0]):
-		    for y in range(0, self.size[1]):
-			    if(self.state[x][y] == "N"):
-				    returned[x*y] = (1);
-			    elif(self.state[x][y] == "R"):
-				    returned[x*y] = (0.5);
-			    else:
-				    returned[x*y] = (0);
-	    return returned;
+        returned = np.random.rand(self.size[0] * self.size[1]);
+        for x in range(0, self.size[0]):
+            for y in range(0, self.size[1]):
+                if(self.state[x][y] == "1"): returned[x * self.size[0] + y] = (1);
+                elif(self.state[x][y] == "2"): returned[x * self.size[0] + y] = (2);
+                elif(self.state[x][y] == "3"): returned[x * self.size[0] + y] = (3);
+                elif(self.state[x][y] == "4"): returned[x * self.size[0] + y] = (4);
+                else: returned[x * self.size[0] + y] = (0);
+        return returned;
 	
 	
     def overlap(self, move):
@@ -754,9 +753,7 @@ class NNPlayer:
             NN_possibles_score = [];
             for possiblility in possibles:
                 # create a copy of the game
-                game_copy = copy.deepcopy(game)
-                # get board from the game copy (we will be playing on this board)
-                board = game_copy.board
+                board = copy.deepcopy(game.board)
                 # update the copy of the board with the Piece placement
                 board.update(self, possiblility.points)
                 feature = board.get1D_Array();
@@ -1345,9 +1342,6 @@ def User_Player(player, game):
 
 print "\n \n Welcome to Blokus! \n \n \n Blokus is a geometrically abstract, strategy board game. It can be a two- or four-player game. Each player has 21 pieces of a different color. The two-player version of the board has 14 rows and 14 columns. \n \n You will be playing a two-player version against an algorithm of your choice: Random, Greedy, or Minimax. In case you need to review the rules of Blokus, please follow this link: http://en.wikipedia.org/wiki/Blokus. \n \n This is how choosing a move is going to work: after every turn, we will display the current state of the board, as well as the scores of each player and the pieces available to you. We have provided you with a map of the names of the pieces, as well as their reference points, denoted by red dots. When you would like to place a piece, we will prompt you for the name of the piece and the coordinate (column, row) of the reference point. If multiple placements are possible, we will let you choose which one you would like to play. \n \n Good luck! \n \n"
 
-
-computer = Player("R", "Random_Player", Random_Player)
-
 # load weights before use
 first_layer_1 = np.genfromtxt("layers_1/first_layer", delimiter=" ")
 hidden_layers_1 =  np.genfromtxt("layers_1/hidden_layers", delimiter=" ");
@@ -1357,13 +1351,24 @@ first_layer_2 = np.genfromtxt("layers_2/first_layer", delimiter=" ")
 hidden_layers_2 =  np.genfromtxt("layers_2/hidden_layers", delimiter=" ");
 final_layer_2 =  np.genfromtxt("layers_2/final_layer", delimiter=" ")
 
+first_layer_3 = np.genfromtxt("layers_3/first_layer", delimiter=" ")
+hidden_layers_3 =  np.genfromtxt("layers_3/hidden_layers", delimiter=" ");
+final_layer_3 =  np.genfromtxt("layers_3/final_layer", delimiter=" ")
 
-user = NNPlayer("N", "NeuralNet_Player", first_layer_1, hidden_layers_1, final_layer_1) #Player("B", "User", User_Player)
+first_layer_4 = np.genfromtxt("layers_4/first_layer", delimiter=" ")
+hidden_layers_4 =  np.genfromtxt("layers_4/hidden_layers", delimiter=" ");
+final_layer_4 =  np.genfromtxt("layers_4/final_layer", delimiter=" ")
+
+
+p1 = NNPlayer("1", "NeuralNet_Player_1", first_layer_1, hidden_layers_1, final_layer_1)
+p2 = NNPlayer("2", "NeuralNet_Player_2", first_layer_2, hidden_layers_2, final_layer_2)
+p3 = NNPlayer("3", "NeuralNet_Player_3", first_layer_3, hidden_layers_3, final_layer_3)
+p4 = NNPlayer("4", "NeuralNet_Player_4", first_layer_4, hidden_layers_4, final_layer_4)
 
 standard_size = Board(20, 20, "_")
 
-ordering = [computer, user]
-random.shuffle(ordering)
+ordering = [p1, p2, p3, p4]
+# random.shuffle(ordering)
 userblokus = Blokus(ordering, standard_size, All_Shapes)
 
 # <codecell>
@@ -1415,4 +1420,22 @@ if(True):
 	writelayer(first_layer_2, "layers_2/first_layer", 400, 50, 1, False);
 	writelayer(hidden_layers_2, "layers_2/hidden_layers", 250, 50, 1, False);
 	writelayer(final_layer_2, "layers_2/final_layer", 50, 1, 1, True);
+	
+	writelayer(first_layer_3, "layers_3/first_layer", 400, 50, 1, False);
+	writelayer(hidden_layers_3, "layers_3/hidden_layers", 250, 50, 1, False);
+	writelayer(final_layer_3, "layers_3/final_layer", 50, 1, 1, True);
+	
+	writelayer(first_layer_4, "layers_4/first_layer", 400, 50, 1, False);
+	writelayer(hidden_layers_4, "layers_4/hidden_layers", 250, 50, 1, False);
+	writelayer(final_layer_4, "layers_4/final_layer", 50, 1, 1, True);
+
+
+
+
+
+
+
+
+
+
 

@@ -1,13 +1,36 @@
 import numpy as np;
+import math
+
+
+
+
+
+def sigmoid(x):
+    return 1 / (1 + math.exp(-x));
 
 def activation(input, first_layer, hidden_layers, final_layer):
-	layers = np.zeros((6, 50))
-	layers[0] = np.dot(input, first_layer);
-	for i in range(0, 5):
-		hidden_layer = hidden_layers[(i*50) : ( (i+1) * 50 ) ];
-		layers[i+1] = np.dot(layers[i].T, hidden_layer);
-	output = np.dot(layers[5], final_layer);
-	return output;
+    layers = np.zeros((6, 50))
+    layers[0] = np.dot(input, first_layer);
+    for j in range(0, 50):
+        layers[0][j] = sigmoid(layers[0][j]);
+    for i in range(0, 5):
+        hidden_layer = hidden_layers[(i*50) : ( (i+1) * 50 ) ];
+        layers[i+1] = np.dot(layers[i].T, hidden_layer);
+        for j in range(0, 50):
+            layers[i+1][j] = sigmoid(layers[i+1][j]);
+    output = np.dot(layers[5], final_layer);
+    output = sigmoid(output);
+    return output;
+
+
+
+
+
+
+
+
+
+
 
 if(False):
 	if(False):
