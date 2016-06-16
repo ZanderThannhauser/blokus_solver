@@ -478,16 +478,16 @@ class Board:
         return (0 <= point[0] <= (self.size[1] - 1)) & (0 <= point[1] <= (self.size[0] - 1))
     
     def get1D_Array(self):
-	returned = np.ones((self.size[0] * self.size[1]));
-	for x in range(0, self.size[0]):
-		for y in range(0, self.size[1]):
-			if(self.state[x][y] == "N"):
-				returned[x*y] = (1);
-			elif(self.state[x][y] == "R"):
-				returned[x*y] = (0.5);
-			else:
-				returned[x*y] = (0);
-	return returned;
+	    returned = np.ones((self.size[0] * self.size[1]));
+	    for x in range(0, self.size[0]):
+		    for y in range(0, self.size[1]):
+			    if(self.state[x][y] == "N"):
+				    returned[x*y] = (1);
+			    elif(self.state[x][y] == "R"):
+				    returned[x*y] = (0.5);
+			    else:
+				    returned[x*y] = (0);
+	    return returned;
 	
 	
     def overlap(self, move):
@@ -656,6 +656,118 @@ class Player:
         strategy and current state of the board.
         """
         return self.strategy(self, game)
+
+
+
+class NNPlayer:
+    def __init__(self, label, name, first_layer, hidden_layers, final_layer):
+        self.label = label
+        self.name = name
+        self.pieces = []
+        self.corners = set()
+        self.first_layer = first_layer;
+        self.hidden_layers = hidden_layers;
+        self.final_layer = final_layer;
+        self.score = 0
+        
+    def add_pieces(self, pieces):
+        """
+        Gives a player the initial set of pieces.
+        """
+        self.pieces = pieces
+        
+    def start_corner(self, p):
+        """
+        Gives a player an initial starting corner.
+        """
+        self.corners = set([p])
+        
+    def remove_piece(self, piece):
+        """
+        Removes a given piece (Shape object) from
+        the list of pieces a player has.
+        """
+        self.pieces = [s for s in self.pieces if s.ID != piece.ID]
+        
+    def update_player(self, placement, board):
+        """
+        Updates the variables that the player is keeping track
+        of, e.g. their score and their available corners.
+        Placement should be in the form of a Shape object.
+        """
+        self.score = self.score + placement.size
+        for c in placement.corners:
+            if (board.in_bounds(c) and (not board.overlap([c]))):
+                (self.corners).add(c)
+    def possible_moves(self, pieces, game):
+        """
+        Returns a unique list of placements, i.e. Shape objects
+        with a particular flip, orientation, corners, and points.
+        It uses a list of pieces (Shape objects) and the game, which includes
+        its rules and valid moves, in order to find the placements.
+        """
+        def check_corners(game):
+            """
+            Updates the corners of the player, in case the
+            corners have been covered by another player's pieces.
+            """
+            self.corners = set([(i,j) for (i,j) in self.corners if game.board.state[j][i] == game.board.null])
+        
+        # Check the corners before proceeding.
+        check_corners(game)
+        
+        # This list of placements will be updated with valid ones.
+        placements = []
+        visited = []
+        
+        # Loop through every available corner.
+        for cr in self.corners:
+            # Look through every piece offered. (This will be restricted according
+            # to certain algorithms.)
+            for sh in pieces:
+                # Create a new shape so that the one in the player's
+                # list of shapes is not overwritten.
+                try_out = copy.deepcopy(sh)
+                # Loop over every potential refpt the piece could have.
+                for num in xrange(try_out.size):
+                    try_out.create(num, cr)
+                    # And every possible flip.
+                    for fl in ["h", "None"]:
+                        try_out.flip(fl)
+                        # And every possible orientation.
+                        for rot in [90]*4:
+                            try_out.rotate(rot)
+                            candidate = copy.deepcopy(try_out)
+                            if game.valid_move(self, candidate.points):
+                                if not (set(candidate.points) in visited):
+                                    placements.append(candidate)
+                                    visited.append(set(candidate.points))
+        
+        return placements
+
+    def do_move(self, game):
+        shape_options = [p for p in self.pieces]
+        print "len(shape_options) == ", len(shape_options);
+        possibles = self.possible_moves(shape_options, game)
+        print "len(possibles) == ", len(possibles);
+        if len(possibles) > 0:
+            NN_possibles_score = [];
+            for possiblility in possibles:
+                # create a copy of the game
+                game_copy = copy.deepcopy(game)
+                # get board from the game copy (we will be playing on this board)
+                board = game_copy.board
+                # update the copy of the board with the Piece placement
+                board.update(self, possiblility.points)
+                feature = board.get1D_Array();
+                score = act.activation(feature, self.first_layer, self.hidden_layers, self.final_layer);
+                NN_possibles_score.append(score);
+            #print NN_possibles_score;
+            maxvalue = max(NN_possibles_score);
+            occur = [i for i, j in enumerate(NN_possibles_score) if j == maxvalue];
+            print "occur == ", occur
+            return possibles[occur[0]];
+        return None
 
 # <headingcell level=4>
 
@@ -871,40 +983,6 @@ def Random_Player(player, game):
     # if the while loop finishes without returning a possible move,
     # there must be no possible moves left, return None
     return None
-
-# load weights before use
-first_layer_1 = np.genfromtxt("layers_1/first_layer", delimiter=" ")
-hidden_layers_1 =  np.genfromtxt("layers_1/hidden_layers", delimiter=" ");
-final_layer_1 =  np.genfromtxt("layers_1/final_layer", delimiter=" ")
-
-first_layer_2 = np.genfromtxt("layers_2/first_layer", delimiter=" ")
-hidden_layers_2 =  np.genfromtxt("layers_2/hidden_layers", delimiter=" ");
-final_layer_2 =  np.genfromtxt("layers_2/final_layer", delimiter=" ")
-
-
-def NeuralNet_Player(player, game):
-    shape_options = [p for p in player.pieces]
-    feature = game.board.get1D_Array();
-	#activation(input, first_layer, hidden_layers, final_layer):
-    score = act.activation(feature, first_layer_1, hidden_layers_1, final_layer_1);
-    print "score == ", score
-    #Alex and Kevin
-    while len(shape_options) > 0:
-        piece = random.choice(shape_options)
-        possibles = player.possible_moves([piece], game)
-    	# here we are going to build the possible future boards,
-	# and run those boards through the neural net, pick the better score.
-        if possibles != []:
-            return random.choice(possibles)
-        
-        else: shape_options.remove(piece)
-    
-    return None
-
-
-
-
-
 
 # <codecell>
 
@@ -1270,7 +1348,17 @@ print "\n \n Welcome to Blokus! \n \n \n Blokus is a geometrically abstract, str
 
 computer = Player("R", "Random_Player", Random_Player)
 
-user = Player("N", "NeuralNet_Player", NeuralNet_Player) #Player("B", "User", User_Player)
+# load weights before use
+first_layer_1 = np.genfromtxt("layers_1/first_layer", delimiter=" ")
+hidden_layers_1 =  np.genfromtxt("layers_1/hidden_layers", delimiter=" ");
+final_layer_1 =  np.genfromtxt("layers_1/final_layer", delimiter=" ")
+
+first_layer_2 = np.genfromtxt("layers_2/first_layer", delimiter=" ")
+hidden_layers_2 =  np.genfromtxt("layers_2/hidden_layers", delimiter=" ");
+final_layer_2 =  np.genfromtxt("layers_2/final_layer", delimiter=" ")
+
+
+user = NNPlayer("N", "NeuralNet_Player", first_layer_1, hidden_layers_1, final_layer_1) #Player("B", "User", User_Player)
 
 standard_size = Board(20, 20, "_")
 
