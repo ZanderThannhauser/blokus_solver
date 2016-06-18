@@ -667,6 +667,8 @@ class NNPlayer:
         self.first_layer = first_layer;
         self.hidden_layers = hidden_layers;
         self.final_layer = final_layer;
+        self.past_input_layers = [];
+        self.past_scores = [];
         self.score = 0
         
     def add_pieces(self, pieces):
@@ -743,6 +745,10 @@ class NNPlayer:
                                     visited.append(set(candidate.points))
         
         return placements
+    def learn(self, target):
+        print "learn(", target, ")"
+        print "\t", len(self.past_input_layers), " net(s) remembered"
+        #print "\t", len(self.past_scores), " output(s) remembered"
 
     def do_move(self, game):
         shape_options = [p for p in self.pieces]
@@ -751,18 +757,24 @@ class NNPlayer:
         print "len(possibles) == ", len(possibles);
         if len(possibles) > 0:
             NN_possibles_score = [];
+            all_features = [];
             for possiblility in possibles:
                 # create a copy of the game
                 board = copy.deepcopy(game.board)
                 # update the copy of the board with the Piece placement
                 board.update(self, possiblility.points)
                 feature = board.get1D_Array();
+                all_features.append(feature);
                 score = act.activation(feature, self.first_layer, self.hidden_layers, self.final_layer);
                 NN_possibles_score.append(score);
             #print NN_possibles_score;
             maxvalue = max(NN_possibles_score);
             occur = [i for i, j in enumerate(NN_possibles_score) if j == maxvalue];
-            print "occur == ", occur
+            #print "occur == ", occur
+            self.past_scores.append(maxvalue);
+            #print "self.past_scores == ", self.past_scores
+            self.past_input_layers.append(all_features[occur[0]]);
+            #print "self.past_input_layers == ", self.past_input_layers
             return possibles[occur[0]];
         return None
 
@@ -866,7 +878,7 @@ class Game:
                 current.update_player(proposal, self.board)
                 # remove the piece that was played from the player
                 current.remove_piece(proposal)
-                # place the player at the back of the queue
+                # place the player at the ba    ck of the queue
                 first = (self.players).pop(0)
                 self.players = self.players + [first]
                 # increment the number of rounds just played
@@ -1379,6 +1391,7 @@ userblokus.board.print_board(num = userblokus.rounds, fancy = False)
 print "\n"
 
 while userblokus.winner() == "None":
+#for i in range(0, 5):
     userblokus.play()
     userblokus.board.print_board(num = userblokus.rounds, fancy = False)
     print "\n"
@@ -1394,13 +1407,20 @@ userblokus.play()
 
 print "The final scores are..."
 
-by_name = sorted(userblokus.players, key = lambda player: player.name)
+by_score = sorted(userblokus.players, key = lambda player: player.score)
 
-for p in by_name:
+for p in by_score:
     print p.name + " : " + str(p.score)
 
+for i in range(0, len(by_score)):
+    if i == len(by_score)-1:
+        diff = by_score[i].score - by_score[i-1].score;
+    else:
+        diff = by_score[i].score - by_score[len(by_score)-1].score;
+    by_score[i].learn(diff / 60.0);
+
 def writelayer(data, path, x, y, z, b):
-	print "data.shape == ", data.shape;
+	#print "data.shape == ", data.shape;
 	file = open(path, "w");
 	for i in range(0, x):
 		for j in range(0, y * z):
@@ -1412,22 +1432,21 @@ def writelayer(data, path, x, y, z, b):
 		file.write("\n")
 	file.close();
 
-if(True):
-	writelayer(first_layer_1, "layers_1/first_layer", 400, 50, 1, False);
-	writelayer(hidden_layers_1, "layers_1/hidden_layers", 250, 50, 1, False);
-	writelayer(final_layer_1, "layers_1/final_layer", 50, 1, 1, True);
-	
-	writelayer(first_layer_2, "layers_2/first_layer", 400, 50, 1, False);
-	writelayer(hidden_layers_2, "layers_2/hidden_layers", 250, 50, 1, False);
-	writelayer(final_layer_2, "layers_2/final_layer", 50, 1, 1, True);
-	
-	writelayer(first_layer_3, "layers_3/first_layer", 400, 50, 1, False);
-	writelayer(hidden_layers_3, "layers_3/hidden_layers", 250, 50, 1, False);
-	writelayer(final_layer_3, "layers_3/final_layer", 50, 1, 1, True);
-	
-	writelayer(first_layer_4, "layers_4/first_layer", 400, 50, 1, False);
-	writelayer(hidden_layers_4, "layers_4/hidden_layers", 250, 50, 1, False);
-	writelayer(final_layer_4, "layers_4/final_layer", 50, 1, 1, True);
+writelayer(first_layer_1, "layers_1/first_layer", 400, 50, 1, False);
+writelayer(hidden_layers_1, "layers_1/hidden_layers", 250, 50, 1, False);
+writelayer(final_layer_1, "layers_1/final_layer", 50, 1, 1, True);
+
+writelayer(first_layer_2, "layers_2/first_layer", 400, 50, 1, False);
+writelayer(hidden_layers_2, "layers_2/hidden_layers", 250, 50, 1, False);
+writelayer(final_layer_2, "layers_2/final_layer", 50, 1, 1, True);
+
+writelayer(first_layer_3, "layers_3/first_layer", 400, 50, 1, False);
+writelayer(hidden_layers_3, "layers_3/hidden_layers", 250, 50, 1, False);
+writelayer(final_layer_3, "layers_3/final_layer", 50, 1, 1, True);
+
+writelayer(first_layer_4, "layers_4/first_layer", 400, 50, 1, False);
+writelayer(hidden_layers_4, "layers_4/hidden_layers", 250, 50, 1, False);
+writelayer(final_layer_4, "layers_4/final_layer", 50, 1, 1, True);
 
 
 
