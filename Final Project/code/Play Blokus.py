@@ -753,7 +753,7 @@ class NNPlayer:
         #feed forward
         layers = np.zeros((6, 50))
         z = np.zeros((6, 50))
-        delta = np.zeros((6,50))
+        delta = np.zeros((7,50))
         layers[0] = np.dot(board, self.first_layer);
         for j in range(0, 50):
             z[0][j] = layers[0][j]
@@ -770,10 +770,13 @@ class NNPlayer:
         print delta_l;
         #backpropagate errors
         for i in range(0,50):
-            delta[5][i] = delta_l*self.final_layer[i]*act.sigmoid_prime(z[5][i]);
-        for i in range(4, -1, -1):
+            delta[6][i] = delta_l*self.final_layer[i]*act.sigmoid_prime(z[5][i]);
+        for i in range(5, -1, -1):
+            #i th layer
             for j in range(0,50):
-                delta[i][j] = delta[i+1][j]*self.final_layer[j]*act.sigmoid_prime(z[i][j]);
+                #weight[j][k] = hidden_layers[i*j][k]
+                for k in range(0,50):
+
         #update weights
         #first_layer
         for i in range(0,400):
