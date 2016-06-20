@@ -7,6 +7,8 @@ import math
 
 def sigmoid(x):
     return 1 / (1 + math.exp(-x));
+def sigmoid_pri(x):
+    return sigmoid(x)*(1-sigmoid(x));
 
 def activation(input, first_layer, hidden_layers, final_layer):
     layers = np.zeros((6, 50))
