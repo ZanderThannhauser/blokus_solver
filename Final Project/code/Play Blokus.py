@@ -745,7 +745,13 @@ class NNPlayer:
                                     visited.append(set(candidate.points))
         
         return placements
-    def learn(self, target,board):
+    def learn(self, target):
+        print "learn(", target, ")"
+        print "\t", len(self.past_input_layers), " net(s) remembered"
+        for 1DArray in past_input_layers:
+            learn_1_turn(self, target, 1DArray);
+        
+    def learn_1_turn(self, target, input_vector):
         print "learn(", target, ")"
         print "\t", len(self.past_input_layers), " net(s) remembered"
         print board
