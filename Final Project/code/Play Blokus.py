@@ -748,10 +748,7 @@ class NNPlayer:
     def learn(self, target):
         print "learn(", target, ")"
         print "\t", len(self.past_input_layers), " net(s) remembered"
-        t = 0
-        for input in self.past_input_layers
-
-            if(t!=0):
+        for t in range(1, self.past_input_layers.length):
                 #forward propagation
                 layers = np.zeros((6, 50))
                 z = np.zeros((6, 50))
@@ -765,20 +762,20 @@ class NNPlayer:
                     for j in range(0, 50):
                         z[i+1][j] = layers[i + 1][j]
                         layers[i + 1][j] = act.sigmoid(layers[i + 1][j]);
-                output = np.dot(layers[5], self.final_layer);
+                output = np.dot(layers[5], self.final_layer); //  insert z write
                 output = act.sigmoid(output);
                 # weight change
                 delta_activation = act.activation(self.past_input_layers[t], self.first_layer, self.hidden_layers,
                                                   self.final_layer) - act.activation(self.past_input_layers[t - 1],
                                                                                      self.first_layer,
-                                                                                     self.hidden_layers,
+                                                                                     self.hidden_layers, // FIX THIS!
                                                                                      self.final_layer)
                 #first layer
                 for i in range(0,400):
                     for j in range(0,50):
                         sum = 0.0
                         for k in range(0,t):
-                            sum = sum + act.sigma(t-k)*input[i]*act.sigmoid_prime(z[0][j])
+                            sum += act.sigma(t-k)*input[i]*act.sigmoid_prime(z[0][j])
                         self.first_layer[i][j] = self.first_layer[i][j]+ delta_activation*sum
                 #hidden layers
                 for l in range(0,5):
@@ -795,15 +792,6 @@ class NNPlayer:
                     for k in range(0,t):
                         sum = sum+ act.sigma(t-k)*layers[5][i]*act.sigmoid_prime(z[5][i])
                     self.final_layer[i] = self.final_layer[i]+sum*delta_activation
-
-
-            t = t +1
-
-
-        
-
-
-
 
     def do_move(self, game):
         shape_options = [p for p in self.pieces]
