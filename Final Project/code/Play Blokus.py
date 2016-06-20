@@ -752,16 +752,18 @@ class NNPlayer:
         for input in self.past_input_layers
 
             if(t!=0):
+                #forward propagation
                 layers = np.zeros((6, 50))
                 z = np.zeros((6, 50))
                 layers[0] = np.dot(input, self.first_layer);
-                z[0] = layers[0]
                 for j in range(0, 50):
+                    z[0][j]=layers[0][j]
                     layers[0][j] = act.sigmoid(layers[0][j]);
                 for i in range(0, 5):
                     hidden_layer = self.hidden_layers[(i * 50): ((i + 1) * 50)];
                     layers[i + 1] = np.dot(layers[i].T, hidden_layer);
                     for j in range(0, 50):
+                        z[i+1][j] = layers[i + 1][j]
                         layers[i + 1][j] = act.sigmoid(layers[i + 1][j]);
                 output = np.dot(layers[5], self.final_layer);
                 output = act.sigmoid(output);
