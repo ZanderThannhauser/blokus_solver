@@ -748,57 +748,24 @@ class NNPlayer:
     def learn(self, target):
         print "learn(", target, ")"
         print "\t", len(self.past_input_layers), " net(s) remembered"
-        for 1DArray in past_input_layers:
-            learn_1_turn(self, target, 1DArray);
-        
-    def learn_1_turn(self, target, input_vector):
-        print "learn(", target, ")"
-        print "\t", len(self.past_input_layers), " net(s) remembered"
-        print board
-        #print "\t", len(self.past_scores), " output(s) remembered"
-        #feed forward
-        layers = np.zeros((6, 50))
-        z = np.zeros((6, 50))
-        delta = np.zeros((7,50))
-        layers[0] = np.dot(board, self.first_layer);
-        for j in range(0, 50):
-            z[0][j] = layers[0][j]
-            layers[0][j] = act.sigmoid(layers[0][j]);
-        for i in range(0, 5):
-            hidden_layer = self.hidden_layers[(i * 50): ((i + 1) * 50)];
-            layers[i + 1] = np.dot(layers[i].T, hidden_layer);
+        for input in self.past_input_layers:
+            layers = np.zeros((6, 50))
+            z = np.zeros((6, 50))
+            layers[0] = np.dot(input, self.first_layer);
             for j in range(0, 50):
-                z[i+1][j] = layers[i+1][j]
-                layers[i + 1][j] = act.sigmoid(layers[i + 1][j]);
-        print layers[5].shape;
-        print self.final_layer.shape;
-        delta_l = target*act.sigmoid_prime(np.dot(layers[5],self.final_layer));
-        print delta_l;
-        #backpropagate errors
-        for i in range(0,50):
-            delta[6][i] = delta_l*self.final_layer[i]*act.sigmoid_prime(z[5][i]);
-        for i in range(5, -1, -1):
-            #i th layer
-            for j in range(0,50):
-                #weight[j][k] = hidden_layers[i*j][k]
-                for k in range(0,50):
+                z[0][j] = layers[0][j]
+                layers[0][j] = act.sigmoid(layers[0][j]);
+            for i in range(0, 5):
+                hidden_layer = self.hidden_layers[(i * 50): ((i + 1) * 50)];
+                layers[i + 1] = np.dot(layers[i].T, hidden_layer);
+                for j in range(0, 50):
+                    z[i+1][j] = layers[i+1][j]
+                    layers[i + 1][j] = act.sigmoid(layers[i + 1][j]);
+            output = np.dot(layers[5], self.final_layer);
+            output = act.sigmoid(output);
+            #
 
-        #update weights
-        #first_layer
-        for i in range(0,400):
-            for j in range (0,50):
-                delta_w =0
-                self.first_layer[i][j] = self.first_layer+delta_w
-        #hidden_layers
-        for i in range(0,2500):
-            for j in range(0,50):
-                delta_w = 0
-                self.hidden_layers[i][j] = self.hidden_layers[i][j]+delta_w
-        #final_layer
-        for i in range(0,50):
-            delta_w = 0
-            self.final_layer[i]= self.final_layer[i]
-
+        
 
 
 
@@ -1470,7 +1437,7 @@ for i in range(0, len(by_score)):
         diff = by_score[i].score - by_score[i-1].score;
     else:
         diff = by_score[i].score - by_score[len(by_score)-1].score;
-    by_score[i].learn(diff / 60.0,userblokus.board.get1D_Array());
+    by_score[i].learn(diff / 60.0);
 
 def writelayer(data, path, x, y, z, b):
 	#print "data.shape == ", data.shape;
