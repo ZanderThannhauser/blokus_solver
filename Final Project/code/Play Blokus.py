@@ -750,6 +750,7 @@ class NNPlayer:
         print "\t", len(self.past_input_layers), " net(s) remembered"
         print board
         #print "\t", len(self.past_scores), " output(s) remembered"
+        #feed forward
         layers = np.zeros((6, 50))
         z = np.zeros((6, 50))
         delta = np.zeros((6,50))
@@ -774,7 +775,20 @@ class NNPlayer:
             for j in range(0,50):
                 delta[i][j] = delta[i+1][j]*self.final_layer[j]*act.sigmoid_prime(z[i][j]);
         #update weights
-        
+        #first_layer
+        for i in range(0,400):
+            for j in range (0,50):
+                delta_w =0
+                self.first_layer[i][j] = self.first_layer+delta_w
+        #hidden_layers
+        for i in range(0,2500):
+            for j in range(0,50):
+                delta_w = 0
+                self.hidden_layers[i][j] = self.hidden_layers[i][j]+delta_w
+        #final_layer
+        for i in range(0,50):
+            delta_w = 0
+            self.final_layer[i]= self.final_layer[i]
 
 
 
