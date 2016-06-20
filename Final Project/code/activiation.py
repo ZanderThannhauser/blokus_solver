@@ -25,6 +25,8 @@ def activation(input, first_layer, hidden_layers, final_layer):
     output = sigmoid(output);
     return output;
 
+def sigma(t):
+    return t*t/441.0
 
 
 
