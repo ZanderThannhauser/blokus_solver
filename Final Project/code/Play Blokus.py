@@ -748,7 +748,7 @@ class NNPlayer:
     def learn(self, target):
         print "learn(", target, ")"
         print "\t", len(self.past_input_layers), " net(s) remembered"
-        for t in range(1, self.past_input_layers.length):
+        for t in range(1, len(self.past_input_layers)):
                 input = self.past_input_layers[t]
                 layers = np.zeros((6, 50))
                 z = np.zeros((6, 50))
