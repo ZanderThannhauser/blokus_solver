@@ -1,5 +1,5 @@
 import numpy as np
 
-a1 = np.genfromtxt("layers/final_layer", delimiter=" ")
+a1 = np.genfromtxt("layers_1/hidden_layers", delimiter=" ")
 print(a1);
-print(a1.size)
+print(a1.shape)

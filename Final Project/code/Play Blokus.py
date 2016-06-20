@@ -745,10 +745,22 @@ class NNPlayer:
                                     visited.append(set(candidate.points))
         
         return placements
-    def learn(self, target):
+    def learn(self, target,board):
         print "learn(", target, ")"
         print "\t", len(self.past_input_layers), " net(s) remembered"
+        print board
         #print "\t", len(self.past_scores), " output(s) remembered"
+        layers = np.zeros((6, 50))
+        layers[0] = np.dot(board, self.first_layer);
+        for j in range(0, 50):
+            layers[0][j] = act.sigmoid(layers[0][j]);
+        for i in range(0, 5):
+            hidden_layer = self.hidden_layers[(i * 50): ((i + 1) * 50)];
+            layers[i + 1] = np.dot(layers[i].T, hidden_layer);
+            for j in range(0, 50):
+                layers[i + 1][j] = act.sigmoid(layers[i + 1][j]);
+        print layers.shape;
+
 
     def do_move(self, game):
         shape_options = [p for p in self.pieces]
@@ -1417,7 +1429,7 @@ for i in range(0, len(by_score)):
         diff = by_score[i].score - by_score[i-1].score;
     else:
         diff = by_score[i].score - by_score[len(by_score)-1].score;
-    by_score[i].learn(diff / 60.0);
+    by_score[i].learn(diff / 60.0,userblokus.board.get1D_Array());
 
 def writelayer(data, path, x, y, z, b):
 	#print "data.shape == ", data.shape;
