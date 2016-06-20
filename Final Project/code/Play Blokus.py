@@ -749,7 +749,7 @@ class NNPlayer:
         print "learn(", target, ")"
         print "\t", len(self.past_input_layers), " net(s) remembered"
         for t in range(1, self.past_input_layers.length):
-                #forward propagation
+                input = self.past_input_layers[t]
                 layers = np.zeros((6, 50))
                 z = np.zeros((6, 50))
                 layers[0] = np.dot(input, self.first_layer);
@@ -762,14 +762,12 @@ class NNPlayer:
                     for j in range(0, 50):
                         z[i+1][j] = layers[i + 1][j]
                         layers[i + 1][j] = act.sigmoid(layers[i + 1][j]);
-                output = np.dot(layers[5], self.final_layer); //  insert z write
+                output = np.dot(layers[5], self.final_layer);
+                z_last = output
                 output = act.sigmoid(output);
                 # weight change
-                delta_activation = act.activation(self.past_input_layers[t], self.first_layer, self.hidden_layers,
-                                                  self.final_layer) - act.activation(self.past_input_layers[t - 1],
-                                                                                     self.first_layer,
-                                                                                     self.hidden_layers, // FIX THIS!
-                                                                                     self.final_layer)
+                delta_activation = self.past_scores[t]-self.past_scores[t-1]
+
                 #first layer
                 for i in range(0,400):
                     for j in range(0,50):
@@ -783,14 +781,14 @@ class NNPlayer:
                         for j in range(0,50):
                             sum = 0
                             for k in range(0,t):
-                                sum = sum+act.sigma(t-k)*layers[l][j]*act.sigmoid_prime(z[i][j])
+                                sum = sum+act.sigma(t-k)*layers[l+1][j]*act.sigmoid_prime(z[l+1][j])
                             self.hidden_layers[l*i][j] = self.hidden_layers[l*i][j]+ delta_activation*sum
 
                 #final_layers
                 for i in range(0,50):
                     sum = 0
                     for k in range(0,t):
-                        sum = sum+ act.sigma(t-k)*layers[5][i]*act.sigmoid_prime(z[5][i])
+                        sum = sum+ act.sigma(t-k)*layers[5][i]*act.sigmoid_prime(z_last)
                     self.final_layer[i] = self.final_layer[i]+sum*delta_activation
 
     def do_move(self, game):
