@@ -7,11 +7,12 @@ import math
 
 def sigmoid(x):
     return 1 / (1 + math.exp(-x));
-def sigmoid_pri(x):
+def sigmoid_prime(x):
     return sigmoid(x)*(1-sigmoid(x));
 
 def activation(input, first_layer, hidden_layers, final_layer):
     layers = np.zeros((6, 50))
+    z = np.zeros((6, 50))
     layers[0] = np.dot(input, first_layer);
     for j in range(0, 50):
         layers[0][j] = sigmoid(layers[0][j]);

@@ -751,28 +751,31 @@ class NNPlayer:
         print board
         #print "\t", len(self.past_scores), " output(s) remembered"
         layers = np.zeros((6, 50))
-        net = np.zeros((6, 50))
+        z = np.zeros((6, 50))
         delta = np.zeros((6,50))
         layers[0] = np.dot(board, self.first_layer);
         for j in range(0, 50):
-            net[0][j] = layers[0][j]
+            z[0][j] = layers[0][j]
             layers[0][j] = act.sigmoid(layers[0][j]);
         for i in range(0, 5):
             hidden_layer = self.hidden_layers[(i * 50): ((i + 1) * 50)];
             layers[i + 1] = np.dot(layers[i].T, hidden_layer);
             for j in range(0, 50):
-                net[i+1][j] = layers[i+1][j]
+                z[i+1][j] = layers[i+1][j]
                 layers[i + 1][j] = act.sigmoid(layers[i + 1][j]);
         print layers[5].shape;
         print self.final_layer.shape;
-        delta_l = target*act.sigmoid_pri(np.dot(layers[5],self.final_layer));
+        delta_l = target*act.sigmoid_prime(np.dot(layers[5],self.final_layer));
         print delta_l;
         #backpropagate errors
         for i in range(0,50):
-            delta[5][i] = delta_l*self.final_layer[i]*act.sigmoid_pri(net[5][i]);
+            delta[5][i] = delta_l*self.final_layer[i]*act.sigmoid_prime(z[5][i]);
         for i in range(4, -1, -1):
             for j in range(0,50):
-                delta[i][j] 
+                delta[i][j] = delta[i+1][j]*self.final_layer[j]*act.sigmoid_prime(z[i][j]);
+        #update weights
+        
+
 
 
 
