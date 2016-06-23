@@ -743,11 +743,11 @@ class NNPlayer:
                                 if not (set(candidate.points) in visited):
                                     placements.append(candidate)
                                     visited.append(set(candidate.points))
-        
         return placements
+
     def learn(self, target):
         for input_vector in self.past_input_layers:
-            learn_one_board(input_vector,target)
+            learn_one_board(self, input_vector, target)
 
     def learn_one_board(self,input_vector,target):
         #forward feed
@@ -786,17 +786,17 @@ class NNPlayer:
         #first layer
         for i in range(0,50):
             for j in range(0,400):
-                delta_w = lamda[0][i]*input_vector[j];
-                self.first_layer[j][i] = self.first_layer[j][i]+delta_w
+                delta_w = learning_rate*lamda[0][i]*input_vector[j];
+                self.first_layer[j][i] = self.first_layer[j][i] - delta_w
         #hidden layers
         for l in range(0,5):
             for i in range(0,50):
-                delta_w = lamda[i+1][j]*layers[l][i]
-                self.hidden_layers[l][i] = self.hidden_layers[l][i] + delta_w
+                delta_w = learning_rate*lamda[i+1][j]*layers[l][i]
+                self.hidden_layers[l][i] = self.hidden_layers[l][i] - delta_w
         #final layser
         for i in range(0,50):
-            delta_w = lamda_l*layers[5][i]
-            self.final_layer[i] = self.final_layer[i] + delta_w
+            delta_w = learning_rate*lamda_l*layers[5][i]
+            self.final_layer[i] = self.final_layer[i] - delta_w
 
 
     def do_move(self, game):
@@ -1402,7 +1402,7 @@ def User_Player(player, game):
 # PLAYING INSTRUCTIONS
 
 print "\n \n Welcome to Blokus! \n \n \n Blokus is a geometrically abstract, strategy board game. It can be a two- or four-player game. Each player has 21 pieces of a different color. The two-player version of the board has 14 rows and 14 columns. \n \n You will be playing a two-player version against an algorithm of your choice: Random, Greedy, or Minimax. In case you need to review the rules of Blokus, please follow this link: http://en.wikipedia.org/wiki/Blokus. \n \n This is how choosing a move is going to work: after every turn, we will display the current state of the board, as well as the scores of each player and the pieces available to you. We have provided you with a map of the names of the pieces, as well as their reference points, denoted by red dots. When you would like to place a piece, we will prompt you for the name of the piece and the coordinate (column, row) of the reference point. If multiple placements are possible, we will let you choose which one you would like to play. \n \n Good luck! \n \n"
-
+learning_rate = 0.3
 # load weights before use
 first_layer_1 = np.genfromtxt("layers_1/first_layer", delimiter=" ")
 hidden_layers_1 =  np.genfromtxt("layers_1/hidden_layers", delimiter=" ");
@@ -1446,7 +1446,7 @@ while userblokus.winner() == "None":
     print "\n"
     for p in userblokus.players:
 	print p.name + " (" + str(p.score) + ") : " + str([s.ID for s in p.pieces])
-	print 
+	print
     print "======================================================================="
 
 print 
