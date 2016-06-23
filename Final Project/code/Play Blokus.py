@@ -799,7 +799,7 @@ class NNPlayer:
             self.final_layer[i] = self.final_layer[i] + delta_w
 
 
-def do_move(self, game):
+    def do_move(self, game):
         shape_options = [p for p in self.pieces]
         print "len(shape_options) == ", len(shape_options);
         possibles = self.possible_moves(shape_options, game)
