@@ -745,7 +745,7 @@ class NNPlayer:
                                     visited.append(set(candidate.points))
         
         return placements
-    def learn(self target):
+    def learn(self, target):
         for input_vector in self.past_input_layers:
             learn_one_board(input_vector,target)
 
@@ -785,11 +785,18 @@ class NNPlayer:
         #update weights
         #first layer
         for i in range(0,50):
-            delta_w =
             for j in range(0,400):
-
+                delta_w = lamda[0][i]*input_vector[j];
+                self.first_layer[j][i] = self.first_layer[j][i]+delta_w
         #hidden layers
+        for l in range(0,5):
+            for i in range(0,50):
+                delta_w = lamda[i+1][j]*layers[l][i]
+                self.hidden_layers[l][i] = self.hidden_layers[l][i] + delta_w
         #final layser
+        for i in range(0,50):
+            delta_w = lamda_l*layers[5][i]
+            self.final_layer[i] = self.final_layer[i] + delta_w
 
 
 def do_move(self, game):
