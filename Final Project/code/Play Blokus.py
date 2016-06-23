@@ -753,7 +753,7 @@ class NNPlayer:
         #forward feed
         layers = np.zeros((6, 50))
         net = np.zeros((6, 50))
-        layers[0] = np.dot(input, self.first_layer);
+        layers[0] = np.dot(input_vector, self.first_layer);
         for j in range(0, 50):
             net[0][j] = layers[0][j]
             layers[0][j] = act.sigmoid(layers[0][j]);
