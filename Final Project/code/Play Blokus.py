@@ -747,7 +747,7 @@ class NNPlayer:
 
     def learn(self, target):
         for input_vector in self.past_input_layers:
-            learn_one_board(self, input_vector, target)
+            self.learn_one_board(input_vector, target)
 
     def learn_one_board(self,input_vector,target):
         #forward feed
