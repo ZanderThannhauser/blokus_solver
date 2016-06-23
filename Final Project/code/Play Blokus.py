@@ -791,7 +791,7 @@ class NNPlayer:
         #hidden layers
         for l in range(0,5):
             for i in range(0,50):
-                delta_w = learning_rate*lamda[i+1][j]*layers[l][i]
+                delta_w = learning_rate*lamda[l+1][i]*layers[l][i]
                 self.hidden_layers[l][i] = self.hidden_layers[l][i] - delta_w
         #final layser
         for i in range(0,50):
