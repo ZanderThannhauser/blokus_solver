@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.5.10)  25 JUN 2016 17:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.5.10)  25 JUN 2016 18:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -659,29 +659,29 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (22.20813pt too wide) in paragraph at lines 59--60
+Overfull \hbox (22.20813pt too wide) in paragraph at lines 60--61
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 69.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 70.
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--69
+Underfull \hbox (badness 10000) in paragraph at lines 65--70
 
  []
 
 [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 69.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 70.
  (./Main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 69.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 69.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 70.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 70.
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 69.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 70.
  ) 
 Here is how much of TeX's memory you used:
  16549 strings out of 495028
  288174 string characters out of 6181497
- 394840 words of memory out of 5000000
+ 394996 words of memory out of 5000000
  19465 multiletter control sequences out of 15000+600000
  4600 words of font info for 17 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -691,7 +691,7 @@ Here is how much of TeX's memory you used:
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on Main.pdf (2 pages, 69111 bytes).
+Output written on Main.pdf (2 pages, 69288 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
