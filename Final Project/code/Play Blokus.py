@@ -1462,11 +1462,7 @@ for p in by_score:
     print p.name + " : " + str(p.score)
 
 for i in range(0, len(by_score)):
-    if i == len(by_score)-1:
-        diff = by_score[i].score - by_score[i-1].score;
-    else:
-        diff = by_score[i].score - by_score[len(by_score)-1].score;
-    by_score[i].learn(diff / 60.0);
+    by_score[i].learn(by_score[i].score / 90.0);
 
 def writelayer(data, path, x, y, z, b):
 	#print "data.shape == ", data.shape;
