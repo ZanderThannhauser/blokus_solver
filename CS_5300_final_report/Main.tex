@@ -43,7 +43,10 @@
 	The basic idea is to feed the Neural Network with the game state and make move decision based on the output of network. At the end of the game, a error is produced based on the result of the 
 	game. The error is backpropagated to each layers in the nextwork. Finally the Neural Network learns to get better through the weight change based on the errors.
 	1. Game State Representation
-	For the game Blokus, the game state is the state of the current board.
+	For the game Blokus, the game state is the state of the current board. The board is 20x20. So a game board state can be represented by a vector with length of 400. Each element is a float number that
+	represents the state of each pixel on the board. 
+	2.Neural Network
+	The Neural Network is built with 7 layers. The first visiable layer takes a input vector 
 	\blindtext\\
 	
 	\noindent{\textbf{Implementation Details}}\\
