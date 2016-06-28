@@ -60,9 +60,17 @@
 	the objects, we could easisly remove the human-player, and have two computer-players compete.\\
 	Now that we knew we had a soild base, we started to consider in more detail the implementation of our ``learning'' `act'ing-function. Even though theorically any ``learning'' function would do,
 	we felt we would have the best results with a typical netural net desgin. Then came the more difficult part were we had to decide what should be a part of the input layer and output layer,
-	and how it should be represented. At first we considered somehow inputting the current board, and the availible pieces, and then having the neural net output which piece, x-y cordinate,
-	and rotation for that piece. That idea quickly fell apart with how to represent a variable-length list of shapes, and how to train rotation and flips, as such operations aren't linearly
-	separable. The second idea was to input a future possible board, and have the neural net output a score on how well it thinks it is doing in the game. Such input the host-program can easily
+	and how it should be represented.
+	
+	At first we considered (the very silly idea of) somehow inputting the current board, and the availible pieces, and then having the neural net output which piece, x-y cordinate,
+	and rotation/flip for that piece. That idea quickly fell apart when attempting to implement a variable-length list of shapes, as well as teaching the neural net, without enforcing a `perfect
+	piece', that would be requried for this implementation.
+	The second idea was to input a future possible board, and have the neural net output a score on the quality of that choice, or how wise that choice is for the player.
+	`Error' in the system can be the difference bewteen the neural network's output compared to it's final placement (rank). Because rank has limited resolution, and can therefore be difficult
+	for a learning algorithm learn from, we choose to have the `rank' equal to the difference of this player's score, to the player with highest score, and the player with the highest score to be
+	compared with the player with the second highest score. For example, if the final scores were $\{45, 56, 42, 69\}$, then the `rank' would be respectively $\{-24, -13, -27,+13\}$. 
+
+	calculate current game state, as well as . Such input the host-program can easily
 	compute, and a output it can work with to make the best move, simply by picking the highest-scored future move. With this particular output of the neural net, training is very easy. To
 	improve the neural net. we can compare the output of the neural net to the final score of the player at the end of the game. The representation of the future board can be given as a large set of
 	integers, being that the blokus board is a set of small squares, which can only have 5 possible states. (1 for Player1, 2 for Player2, ..., 0 for empty space) This makes the `act'-ing
@@ -95,7 +103,7 @@ return possible_moves[highest_score_index]
 	\end{lstlisting}
 	
 	\noindent{\textbf{Experimentation/Evaulation}}\\
-		
+	
 	
 \end{document}
 
