@@ -9,9 +9,12 @@
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
 \begin{document}
-	\textbf{Abstract}\\
-		``Leave it like that for now''\\ \\
-	\textbf{Introduction}\\
+	\noindent{\textbf{Abstract}}\\
+		Machine Learning and Game Playing are two very hot topics. In this project we apply machine learning techniques to the board game Blokus. We picked Backpropagation Algorithm as
+		our learning algorithm and applied it to a Neural Network with 7 layers. The project is implemented in python. We trained the Neural Network with over 1000 games. Significant
+		improvement could be seen.\\ \\
+
+	\noindent{\textbf{Introduction}}\\
 	Nowadays, Machine Learning becomes more and more popular. After the success of AlphaGo, the field catches the attentions all over the world.  In 1959, Arthur Samuel defined machine
 	learning as a ``Field of study that gives computers the ability to learn without being explicitly programmed.''[] Developing traditional AI application without using machine learning
 	strategy is the process that transfers human knowledge to formal computer algorithm and implements it in programming languages. This approach gives the computer the knowledge needed
@@ -35,10 +38,10 @@
 	game state is converted to a input vector which gets plugged into the Neural Network. The output of the Network is the Evaluation Score of the game state. We use back-propagation algorithm
 	as our learning algorithm. In the next section, we will talk about our approach in details.\\
 
-	\textbf{Backpropagartion Details}\\
+	\noindent{\textbf{Backpropagartion Details}}\\
 	\blindtext\\
 	
-	\textbf{Implementation Details}\\
+	\noindent{\textbf{Implementation Details}}\\
 	When we were assigned the task of writing a blokus-learning algorithm, our first response was to break our task into pieces:
 	\begin{itemize}
 		\item Some sort of host-program, game-engine, something that could manage the game board, keep track of it's current state, draw it on the screen, keep track of the players' pieces,
@@ -91,8 +94,8 @@ highest_score_index = # highest value's index in possible_moves_scores #
 return possible_moves[highest_score_index]
 	\end{lstlisting}
 	
-	\textbf{Experimentation/Evaulation}\\
-	
+	\noindent{\textbf{Experimentation/Evaulation}}\\
+		
 	
 \end{document}
 
