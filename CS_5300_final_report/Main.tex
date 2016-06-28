@@ -47,7 +47,12 @@
 	For the game Blokus, the game state is the state of the current board. The board is 20x20. So a game board state can be represented by a vector with length of 400. Each element is a float number that
 	represents the state of each pixel on the board. 
 	2.Neural Network
-	The Neural Network is built with 7 layers. The first visiable layer takes a input vector 
+	The Neural Network is built with 7 layers. Each layer except last layer contains 50 neurons. The game state vector is fed into the first layer. There is just one neuron in the last layer,
+	 which output a evaluation score of a game state. All neurons are fully connected between adjacent layers. 
+	3. Backpropagate The Errors
+	The errors are backpropagated using the following formula.
+	4.Weight Change
+	The weight change is calculated using the following formula.
 	\blindtext\\
 =======
 	For the game Blokus, the game state is the state of the current board.\\
