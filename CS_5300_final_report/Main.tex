@@ -9,8 +9,29 @@
 \usetikzlibrary{arrows}
 \usetikzlibrary{positioning}
 \begin{document}
+	Introduction
+	Nowadays, Machine Learning becomes more and more popular. After the success of AlphaGo, the field catches the attentions all over the world.  In 1959, Arthur Samuel defined machine
+	learning as a ``Field of study that gives computers the ability to learn without being explicitly programmed.''[] Developing traditional AI application without using machine learning
+	strategy is the process that transfers human knowledge to formal computer algorithm and implements it in programming languages. This approach gives the computer the knowledge needed
+	to complete the tasks rather than the abilities to learn the knowledge. Traditional AI approach without machine learning solves the Game Play problem typically in the following steps.
+	\begin{enumerate}
+		\item Given the current game state $S_0$, calculate possible next game states $S_{next} = \{s_i|s_0\xrightarrow[]{move_i}s_i\}$
+
+		\item Evaluate all game states in $S_{next}$ with the Evaluation Function f. Find the best next game state $S_{best}$ where $f(s_{best}) = max\{f(s_i)\,|\,s_i \epsilon s_{next}\}$ and corresponding
+			move $m_{best}$. \left($s_0 \xrightarrow[]{move_i} s_i$ \right(
+		\item Apply the move $m_best$.
+	\end{enumerate}
+	Obviously the key element in Game Play AI application is the Evaluation Function.  Designing Evaluation Function is the process to transfer human knowledge or heuristics into a formula
+	that gives a meaningful Evaluation Score to help with decision making.\\
+	The problem with the traditional AI
+	\begin{enumerate}
+		\item The Evaluation Function is hard to design. There are too many factors needed to be considered in order to give a meaningful score. 
+		\item Typically the Evaluation Function only considers the current game state without looking at the future, which makes the Evaluation Score no so meaningful.  Min-Max search[] was introduced to solve the problem. But as the number of game states grows exponentially, this approach becomes not practical.
+	\end{enumerate}
+	Machine Learning overcomes the problem by giving computer the abilities to learning how to evaluate the game states. We use Artificial Neural Network as the model of Machine Learning. A game state is converted to a input vector which gets plugged into the Neural Network. The output of the Network is the Evaluation Score of the game state. We use back-propagation algorithm as our learning algorithm. In the next section, we will talk about our approach in details.
+
 	When we were assigned the task of writing a blokus-learning algorithm, our first response was to break our task into pieces:
-		\begin{itemize}
+	\begin{itemize}
 		\item Some sort of host-program, game-engine, something that could manage the game board, keep track of it's current state, draw it on the screen, keep track of the players' pieces,
 			and calculate possible moves for the players.
 		\item A function that would `act' for the player, it would somehow take in the current board, and decide what piece to place. This function would be called by the game-engine each
