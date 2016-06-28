@@ -10,9 +10,10 @@
 \usetikzlibrary{positioning}
 \begin{document}
 	\noindent{\textbf{Abstract}}\\
-		Machine Learning and Game Playing are two very hot topics. In this project we apply machine learning techniques to the board game Blokus. We picked Backpropagation Algorithm as
-		our learning algorithm and applied it to a Neural Network with 7 layers. The project is implemented in python. We trained the Neural Network with over 1000 games. Significant
-		improvement could be seen.\\ \\
+		Machine Learning is a study field that focusing on giving computer the abilities to learn. It can be applied to many areas such as pattern recognition, data classification and game play. 
+		In this project we applied machine learning  techniques to the board game Blokus. In order to give computer the ability to learn how to play the game, a Neural Network was built with 7 layers.
+	    Learning abilities are enabled by applying Backpropagation algoritm to the Neural Network so it can be trained to get better at the game. The project is implemented in python. 
+	    The Neural Network was trained with over 1000 games. Significant improvement could be seen.\\ \\
 
 	\noindent{\textbf{Introduction}}\\
 	Nowadays, Machine Learning becomes more and more popular. After the success of AlphaGo, the field catches the attentions all over the world.  In 1959, Arthur Samuel defined machine
@@ -38,7 +39,11 @@
 	game state is converted to a input vector which gets plugged into the Neural Network. The output of the Network is the Evaluation Score of the game state. We use back-propagation algorithm
 	as our learning algorithm. In the next section, we will talk about our approach in details.\\
 
-	\noindent{\textbf{Backpropagartion Details}}\\
+	\noindent{\textbf{Algorithm Description}}\\
+	The basic idea is to feed the Neural Network with the game state and make move decision based on the output of network. At the end of the game, a error is produced based on the result of the 
+	game. The error is backpropagated to each layers in the nextwork. Finally the Neural Network learns to get better through the weight change based on the errors.
+	1. Game State Representation
+	For the game Blokus, the game state is the state of the current board.
 	\blindtext\\
 	
 	\noindent{\textbf{Implementation Details}}\\
