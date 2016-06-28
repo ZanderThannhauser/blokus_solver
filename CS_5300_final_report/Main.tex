@@ -20,13 +20,8 @@
 		\item Given the current game state $S_0$, calculate possible next game states $S_{next} = \{s_i|s_0\xrightarrow[]{move_i}s_i\}$
 
 		\item Evaluate all game states in $S_{next}$ with the Evaluation Function f. Find the best next game state $S_{best}$ where $f(s_{best}) = max\{f(s_i)\,|\,s_i \epsilon s_{next}\}$ and corresponding
-<<<<<<< HEAD
-			move $m_{best}$. ($s_0 \xrightarrow[]{move_i} s_i$)
-		\item Apply the move $m_best$.
-=======
 			move $m_{best}$. ($s_0 \xrightarrow[]{move_{best}} s_{best}$)
 		\item Apply $move_{best}$.
->>>>>>> 33c7335ca16e7f8ab5c6f17c92ec4c4b3a3100b9
 	\end{enumerate}
 	Obviously the key element in Game Play AI application is the Evaluation Function.  Designing Evaluation Function is the process to transfer human knowledge or heuristics into a formula
 	that gives a meaningful Evaluation Score to help with decision making.\\
