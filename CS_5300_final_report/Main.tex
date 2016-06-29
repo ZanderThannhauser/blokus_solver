@@ -61,7 +61,6 @@
 					w^l &\rightarrow w^l - \frac{\eta}{m} \sum_{x} \left(\delta^{x, l} \left( a^{x, l-1}\right) ^T\right) \\
 					b^l &\rightarrow b^l - \frac{\eta}{m} \sum_{x} \left(\delta^{x, l}\right)
 				\end{align*}
-			w^l is the weight-vector in l-th layer
 	\end{enumerate}
 	\noindent{\textbf{Implementation Details}}\\
 	When we were assigned the task of writing a blokus-learning algorithm, our first response was to break our task into pieces:
@@ -91,9 +90,10 @@
 	`Error' in the system can be the difference bewteen the neural network's output compared to it's final placement (rank). Because rank has limited resolution, and can therefore be difficult
 	for a learning algorithm learn from, we choose to have the `rank' equal to the difference of each player's score, to the player with highest score, and the player with the highest score is
 	compared with the player with the second highest score. For example, if the final scores were \{45, 56, 42, 69\}, then the `rank' would be respectively $\{-24, -13, -27,+13\}$. These ranks
-	where then divided by the highest possible score (89), to normalize the ranks from 0 to 1. This had it's own set of problems, the biggest one of which that since a sigmoid function was
-	used in our neurons, networks can never achieve a negative output. This causes a typical backprop. training algorithm to drastically change weights incorrectly. A new ranking system was soon
-	proposed. 
+	where then divided by the highest possible score (89), to normalize the ranks from 0 to 1. This implementation had it's own set of problems, the biggest one of which that since a sigmoid
+	function was used in the neural network's neurons, networks can never achieve a negative output. This causes a typical backprop. training algorithm to make drastic weight changes. A new and
+	final ranking system was soon proposed. The final ranking method was to simply train the neural networks with the error of their outputs and their normalized final score, this guarantees
+	a tunable stable system, kinda. (see `Concerns')
 
 	calculate current game state, as well as . Such input the host-program can easily
 	compute, and a output it can work with to make the best move, simply by picking the highest-scored future move. With this particular output of the neural net, training is very easy. To
@@ -125,17 +125,13 @@ for move in possible_moves:
 	possible_moves_scores.append(score)
 highest_score_index = # highest value's index in possible_moves_scores #
 return possible_moves[highest_score_index]
-	\end{lstlisting}
-	
+	\end{lstlisting}	
 	\noindent{\textbf{Experimentation/Evaulation}}\\
-<<<<<<< HEAD
-	
-=======
+	\blindtext \\ 
 	\noindent{\textbf{Disscussion}\\
-	This section talks about all the struggles we had with the project.
-		
->>>>>>> 203e23d2f7454c7d83f35b4215dfeb0900556036
-	
+	\blindtext \\
+	\noindent{\textbf{Concerns}\\
+	\blindtext \\
 \end{document}
 
 
