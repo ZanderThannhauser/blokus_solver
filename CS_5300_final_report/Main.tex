@@ -44,24 +44,29 @@
 	At the end of the game, a error is produced based on the result of the game. The error is backpropagated to each layers in the network. Finally, the neural network improved performance through
 	the weight changes based on the errors of prevoius games.
 	\begin{enumerate}
-		\item Game State Representation\\
+		\item \noindent{\textbf{Game State Representation}}\\
 			For the game Blokus, the game state is the state of the current board. The board is $20\times20$. So a game board state can be represented by a vector of length 400
 			Each element is a integer number that represents the state of each pixel on the board. 
-		\item Neural Network\\
+		\item \noindent{\textbf{Neural Network}}\\
 			The Neural Network is built with 7 layers. Each layer except the first and last layer contains 50 neurons. The game state vector is fed into the first layer. There is just one
 			neuron in the last layer, which outputs a evaluation score of the game state. All neurons are fully connected between adjacent layers. 
-		\item Backpropagate The Errors\\
+		\item \noindent{\textbf{Backpropagate The Errors}}\\
 			The errors are backpropagated using the following formula.
 				\begin{equation*}
 				\delta^{x, l} = \left( \left( w^{l+t} \right)^T \delta^{x, l+1} \right) \odot  \sigma'\left( z^{x, l}\right)
 				\end{equation*}
-		\item Weight Change
+			$\delta^{x, l}$  is the error of $x^{th}$ neuron in $l^{th}$ layer\\
+			$w^l$  is the weight matrix in $l^{th}$ layer \\
+			$\sigma$(x)=$\frac{1}{1+e^{-x}}$ \\
+			$z^{x, l}$ is the weighted input to the $x^{th}$ neuron in the $l^{th}$ layer
+		\item \noindent{\textbf{Weight Change}}\\
 			The weight change is calculated using the following formula.
 				\begin{align*}
 					w^l &\rightarrow w^l - \frac{\eta}{m} \sum_{x} \left(\delta^{x, l} \left( a^{x, l-1}\right) ^T\right) \\
 					b^l &\rightarrow b^l - \frac{\eta}{m} \sum_{x} \left(\delta^{x, l}\right)
 				\end{align*}
-			w^l is the weight-vector in l-th layer
+					$a^{x, l}$  is the activation value of $x^{th}$ neuron in $l^{th}$ layer \\
+					$\eta$ is the learning rate.
 	\end{enumerate}
 	\noindent{\textbf{Implementation Details}}\\
 	When we were assigned the task of writing a blokus-learning algorithm, our first response was to break our task into pieces:
