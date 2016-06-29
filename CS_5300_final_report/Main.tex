@@ -40,24 +40,29 @@
 	as our learning algorithm. In the next section, we will talk about our approach in details.\\
 
 	\noindent{\textbf{Algorithm Description}}\\
-	The basic idea is to feed the Neural Network with the game state and make move decision based on the output of network. At the end of the game, a error is produced based on the result of the 
-	game. The error is backpropagated to each layers in the nextwork. Finally the Neural Network learns to get better through the weight change based on the errors.
-	1. Game State Representation
-<<<<<<< HEAD
-	For the game Blokus, the game state is the state of the current board. The board is 20x20. So a game board state can be represented by a vector with length of 400. Each element is a float number that
-	represents the state of each pixel on the board. 
-	2.Neural Network
-	The Neural Network is built with 7 layers. Each layer except last layer contains 50 neurons. The game state vector is fed into the first layer. There is just one neuron in the last layer,
-	 which output a evaluation score of a game state. All neurons are fully connected between adjacent layers. 
-	3. Backpropagate The Errors
-	The errors are backpropagated using the following formula.
-	4.Weight Change
-	The weight change is calculated using the following formula.
-	\blindtext\\
-=======
-	For the game Blokus, the game state is the state of the current board.\\
->>>>>>> 91406c280a180901ecb8dbc89bea2210b69adca6
-	
+	The basic idea is to feed the neural network with the a future game state and to make a move based on the output of the network, which is the evaluation score of the future gamestate.
+	At the end of the game, a error is produced based on the result of the game. The error is backpropagated to each layers in the network. Finally, the neural network improved performance through
+	the weight changes based on the errors of prevoius games.
+	\begin{enumerate}
+		\item Game State Representation\\
+			For the game Blokus, the game state is the state of the current board. The board is $20\times20$. So a game board state can be represented by a vector of length 400
+			Each element is a integer number that represents the state of each pixel on the board. 
+		\item Neural Network\\
+			The Neural Network is built with 7 layers. Each layer except the first and last layer contains 50 neurons. The game state vector is fed into the first layer. There is just one
+			neuron in the last layer, which outputs a evaluation score of the game state. All neurons are fully connected between adjacent layers. 
+		\item Backpropagate The Errors\\
+			The errors are backpropagated using the following formula.
+				\begin{equation*}
+				\delta^{x, l} = \left( \left( w^{l+t} \right)^T \delta^{x, l+1} \right) \odot  \sigma'\left( z^{x, l}\right)
+				\end{equation*}
+		\item Weight Change
+			The weight change is calculated using the following formula.
+				\begin{align*}
+					w^l &\rightarrow w^l - \frac{\eta}{m} \sum_{x} \left(\delta^{x, l} \left( a^{x, l-1}\right) ^T\right) \\
+					b^l &\rightarrow b^l - \frac{\eta}{m} \sum_{x} \left(\delta^{x, l}\right)
+				\end{align*}
+			w^l is the weight-vector in l-th layer
+	\end{enumerate}
 	\noindent{\textbf{Implementation Details}}\\
 	When we were assigned the task of writing a blokus-learning algorithm, our first response was to break our task into pieces:
 	\begin{itemize}

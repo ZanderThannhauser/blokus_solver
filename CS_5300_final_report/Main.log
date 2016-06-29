@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.5.10)  28 JUN 2016 19:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.5.10)  28 JUN 2016 20:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -672,60 +672,112 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--41
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 42--47
+! Missing $ inserted.
+<inserted text> 
+                $
+l.64 			w^
+          l is the weight-vector in l-th layer
+? q
+OK, entering \batchmode...
 
- []
+! LaTeX Error: Command \end{enumerate} invalid in math mode.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 51.
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.65 	\end{enumerate}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.65 	\end{enumerate}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.65 	\end{enumerate}
+                     
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.65 	\end{enumerate}
+                     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 69.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
- [2]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
+ [2] [3]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
-) [3]
-Overfull \hbox (22.20813pt too wide) in paragraph at lines 108--109
+)
+Overfull \hbox (22.20813pt too wide) in paragraph at lines 126--127
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 121.
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 121.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 139.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 139.
  (./Main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 121.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 121.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 139.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 139.
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 121.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 139.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 116 ({)
+### simple group (level 1) entered at line 134 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 16587 strings out of 495028
- 288727 string characters out of 6181497
- 388235 words of memory out of 5000000
+ 16591 strings out of 495028
+ 288751 string characters out of 6181497
+ 394126 words of memory out of 5000000
  19482 multiletter control sequences out of 15000+600000
  6607 words of font info for 26 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 56i,12n,55p,415b,1819s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,12n,55p,415b,1107s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmti8.pfb>
-Output written on Main.pdf (4 pages, 125963 bytes).
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmti8.pfb>
+Output written on Main.pdf (4 pages, 146585 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
- 33 named destinations out of 1000 (max. 500000)
+ 117 PDF objects out of 1000 (max. 8388607)
+ 98 compressed objects within 1 object stream
+ 37 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
