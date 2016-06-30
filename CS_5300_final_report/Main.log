@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.27)  28 JUN 2016 21:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.5.10)  29 JUN 2016 23:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Main.tex
 (./Main.tex
 LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -646,86 +646,195 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \c@lstlisting=\count168
+LaTeX Font Info:    Try loading font information for U+msa on input line 26.
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--17
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--17
-
- []
-
-LaTeX Font Info:    Try loading font information for U+msa on input line 24.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 24.
+LaTeX Font Info:    Try loading font information for U+msb on input line 26.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 38--41
+Underfull \hbox (badness 10000) in paragraph at lines 32--37
 
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 74.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 57--59
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+ []
+
+[2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 92.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
- [3]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
+
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
-)
-Overfull \hbox (22.20813pt too wide) in paragraph at lines 131--132
+) [3]
+Overfull \hbox (22.20813pt too wide) in paragraph at lines 133--134
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 144.
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--151
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--151
+
+ []
+
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 144.
+Underfull \hbox (badness 10000) in paragraph at lines 152--160
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+\OT1/cmr/m/n/10 large pieces reach-ing over to sur-round Player1: 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--180
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 201--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--206
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--206
+
+ []
+
+[6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 264.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 264.
  (./Main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 144.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 144.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 264.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 264.
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 144.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 264.
  )
-(\end occurred inside a group at level 1)
+(\end occurred inside a group at level 2)
 
-### simple group (level 1) entered at line 139 ({)
+### simple group (level 2) entered at line 152 ({)
+### simple group (level 1) entered at line 137 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 16591 strings out of 493304
- 288751 string characters out of 6139871
- 399817 words of memory out of 5000000
- 19731 multiletter control sequences out of 15000+600000
- 6607 words of font info for 26 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 56i,12n,55p,415b,1107s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 16700 strings out of 495028
+ 290212 string characters out of 6181497
+ 603458 words of memory out of 5000000
+ 19509 multiletter control sequences out of 15000+600000
+ 11905 words of font info for 46 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 56i,12n,55p,415b,1746s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-8.pfb>
-Output written on Main.pdf (4 pages, 155201 bytes).
+mbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on Main.pdf (7 pages, 198443 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 101 compressed objects within 2 object streams
- 37 named destinations out of 1000 (max. 500000)
+ 229 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
+ 108 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

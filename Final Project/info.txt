@@ -1,2 +1,0 @@
-title: Blokus Solver
-seas-usernames: tgebert, mcone, yuanjiang
